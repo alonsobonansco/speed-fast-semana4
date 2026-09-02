@@ -31,9 +31,4 @@ public class PedidoEncomienda extends Pedido {
     protected int calcularTiempoEntrega() {
         return (int) (20 + 1.5 * getDistanciaKm());
     }
-
-    @Override
-    public void asignarRepartidor() {
-        System.out.println("Buscando un repartidor disponible para un pedido de encomienda...");
-    }
 }

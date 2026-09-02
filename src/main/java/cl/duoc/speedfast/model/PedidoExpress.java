@@ -25,9 +25,4 @@ public class PedidoExpress extends Pedido {
     protected int calcularTiempoEntrega() {
         return (getDistanciaKm() > 5) ? 15 : 10;
     }
-
-    @Override
-    public void asignarRepartidor() {
-        System.out.println("Buscando un repartidor disponible para un pedido express...");
-    }
 }

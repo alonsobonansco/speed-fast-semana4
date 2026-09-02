@@ -6,7 +6,6 @@ public abstract class Pedido implements Despachable, Cancelable {
     private String direccionEntrega;
     private final double distanciaKm;
     private boolean pedidoActivo = true;
-    private String nombreRepartidor = "No asignado";
 
     public Pedido(TipoPedido tipoPedido, String idPedido, String direccionEntrega, double distanciaKm) {
         if (idPedido == null || idPedido.isBlank()) {
@@ -44,13 +43,6 @@ public abstract class Pedido implements Despachable, Cancelable {
 
     protected abstract int calcularTiempoEntrega();
 
-    public abstract void asignarRepartidor();
-
-    public void asignarRepartidor(String nombreRepartidor) {
-        this.nombreRepartidor = nombreRepartidor;
-        System.out.println("[" + tipoPedido + " #" + idPedido + "] asignado a " + nombreRepartidor + ".\n");
-    }
-
     public void mostrarResumen() {
         String textoResumen = """
                 \n===================
@@ -84,10 +76,6 @@ public abstract class Pedido implements Despachable, Cancelable {
 
     public double getDistanciaKm() {
         return distanciaKm;
-    }
-
-    public String getNombreRepartidor() {
-        return nombreRepartidor;
     }
 
     public void setDireccionEntrega(String direccionEntrega) {
