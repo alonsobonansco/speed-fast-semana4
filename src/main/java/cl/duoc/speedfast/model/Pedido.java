@@ -1,14 +1,14 @@
 package cl.duoc.speedfast.model;
 
 public abstract class Pedido implements Despachable, Cancelable {
-    private final String tipoPedido;
+    private final TipoPedido tipoPedido;
     private final String idPedido;
     private String direccionEntrega;
     private final double distanciaKm;
     private boolean pedidoActivo = true;
     private String nombreRepartidor = "No asignado";
 
-    public Pedido(String tipoPedido, String idPedido, String direccionEntrega, double distanciaKm) {
+    public Pedido(TipoPedido tipoPedido, String idPedido, String direccionEntrega, double distanciaKm) {
         if (idPedido == null || idPedido.isBlank()) {
             throw new IllegalArgumentException("El ID del pedido no puede estar vacío.");
         }
@@ -61,7 +61,7 @@ public abstract class Pedido implements Despachable, Cancelable {
                 Distancia: %.1f km
                 Tiempo estimado de entrega: %d minutos
                 """.formatted(
-                getTipoPedido(), getIdPedido(),
+                tipoPedido.getNombrePedido(), getIdPedido(),
                 getDireccionEntrega(),
                 getDistanciaKm(),
                 calcularTiempoEntrega()
@@ -70,7 +70,7 @@ public abstract class Pedido implements Despachable, Cancelable {
         System.out.println(textoResumen);
     }
 
-    public String getTipoPedido() {
+    public TipoPedido getTipoPedido() {
         return tipoPedido;
     }
 
