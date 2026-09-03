@@ -4,7 +4,7 @@ public class PedidoExpress extends Pedido {
     private static final double LIMITE_DISTANCIA_KM = 20.0;
 
     public PedidoExpress(String idPedido, String direccionEntrega, double distanciaKm) {
-        super("PEDIDO EXPRESS", idPedido, direccionEntrega, distanciaKm);
+        super(TipoPedido.EXPRESS, idPedido, direccionEntrega, distanciaKm);
     }
 
     @Override
@@ -24,10 +24,5 @@ public class PedidoExpress extends Pedido {
     @Override
     protected int calcularTiempoEntrega() {
         return (getDistanciaKm() > 5) ? 15 : 10;
-    }
-
-    @Override
-    public void asignarRepartidor() {
-        System.out.println("Buscando un repartidor disponible para un pedido express...");
     }
 }

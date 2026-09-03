@@ -4,7 +4,7 @@ public class PedidoComida extends Pedido {
     private final boolean mochilaEnBuenEstado;
 
     public PedidoComida(String idPedido, String direccionEntrega, double distanciaKm, boolean mochilaEnBuenEstado) {
-        super("PEDIDO COMIDA", idPedido, direccionEntrega, distanciaKm);
+        super(TipoPedido.COMIDA, idPedido, direccionEntrega, distanciaKm);
         this.mochilaEnBuenEstado = mochilaEnBuenEstado;
     }
 
@@ -25,10 +25,5 @@ public class PedidoComida extends Pedido {
     @Override
     protected int calcularTiempoEntrega() {
         return (int) (15 + 2 * getDistanciaKm());
-    }
-
-    @Override
-    public void asignarRepartidor() {
-        System.out.println("Buscando un repartidor disponible para un pedido de comida...");
     }
 }

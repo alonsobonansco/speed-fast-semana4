@@ -5,7 +5,7 @@ public class PedidoEncomienda extends Pedido {
     private final double pesoEncomienda;
 
     public PedidoEncomienda(String idPedido, String direccionEntrega, double distanciaKm, double pesoEncomienda) {
-        super("PEDIDO ENCOMIENDA", idPedido, direccionEntrega, distanciaKm);
+        super(TipoPedido.ENCOMIENDA, idPedido, direccionEntrega, distanciaKm);
 
         if (pesoEncomienda <= 0) {
             throw new IllegalArgumentException("El peso de la encomienda debe ser válido.");
@@ -30,10 +30,5 @@ public class PedidoEncomienda extends Pedido {
     @Override
     protected int calcularTiempoEntrega() {
         return (int) (20 + 1.5 * getDistanciaKm());
-    }
-
-    @Override
-    public void asignarRepartidor() {
-        System.out.println("Buscando un repartidor disponible para un pedido de encomienda...");
     }
 }

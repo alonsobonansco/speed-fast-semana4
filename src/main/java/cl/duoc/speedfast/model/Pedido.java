@@ -1,14 +1,13 @@
 package cl.duoc.speedfast.model;
 
 public abstract class Pedido implements Despachable, Cancelable {
-    private final String tipoPedido;
+    private final TipoPedido tipoPedido;
     private final String idPedido;
     private String direccionEntrega;
     private final double distanciaKm;
     private boolean pedidoActivo = true;
-    private String nombreRepartidor = "No asignado";
 
-    public Pedido(String tipoPedido, String idPedido, String direccionEntrega, double distanciaKm) {
+    public Pedido(TipoPedido tipoPedido, String idPedido, String direccionEntrega, double distanciaKm) {
         if (idPedido == null || idPedido.isBlank()) {
             throw new IllegalArgumentException("El ID del pedido no puede estar vacío.");
         }
@@ -44,13 +43,6 @@ public abstract class Pedido implements Despachable, Cancelable {
 
     protected abstract int calcularTiempoEntrega();
 
-    public abstract void asignarRepartidor();
-
-    public void asignarRepartidor(String nombreRepartidor) {
-        this.nombreRepartidor = nombreRepartidor;
-        System.out.println("[" + tipoPedido + " #" + idPedido + "] asignado a " + nombreRepartidor + ".\n");
-    }
-
     public void mostrarResumen() {
         String textoResumen = """
                 \n===================
@@ -61,7 +53,7 @@ public abstract class Pedido implements Despachable, Cancelable {
                 Distancia: %.1f km
                 Tiempo estimado de entrega: %d minutos
                 """.formatted(
-                getTipoPedido(), getIdPedido(),
+                tipoPedido.getNombrePedido(), getIdPedido(),
                 getDireccionEntrega(),
                 getDistanciaKm(),
                 calcularTiempoEntrega()
@@ -70,7 +62,7 @@ public abstract class Pedido implements Despachable, Cancelable {
         System.out.println(textoResumen);
     }
 
-    public String getTipoPedido() {
+    public TipoPedido getTipoPedido() {
         return tipoPedido;
     }
 
@@ -84,10 +76,6 @@ public abstract class Pedido implements Despachable, Cancelable {
 
     public double getDistanciaKm() {
         return distanciaKm;
-    }
-
-    public String getNombreRepartidor() {
-        return nombreRepartidor;
     }
 
     public void setDireccionEntrega(String direccionEntrega) {
