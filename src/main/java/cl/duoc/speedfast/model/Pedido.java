@@ -1,6 +1,6 @@
 package cl.duoc.speedfast.model;
 
-public abstract class Pedido implements Despachable, Cancelable {
+public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedido> {
     private final TipoPedido tipoPedido;
     private final String idPedido;
     private String direccionEntrega;
@@ -37,6 +37,21 @@ public abstract class Pedido implements Despachable, Cancelable {
         }
         pedidoActivo = false;
         System.out.println("- El pedido #" + idPedido + " ha sido cancelado.\n");
+    }
+
+    @Override
+    public int compareTo(Pedido otro) {
+        int comparacionPrioridad = Integer.compare(
+                this.tipoPedido.getNivelPrioridad(),
+                otro.tipoPedido.getNivelPrioridad()
+        );
+
+        if (comparacionPrioridad != 0) {
+            return comparacionPrioridad;
+        }
+
+        // En caso de que tengan la misma prioridad se atiende el pedido con menor número
+        return this.idPedido.compareTo(otro.idPedido);
     }
 
     public abstract boolean validarPedido();
