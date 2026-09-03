@@ -18,7 +18,7 @@ public class Repartidor implements Runnable {
         for (Pedido pedido : listaPedidos) {
             try {
                 System.out.println("[Repartidor: " + nombreRepartidor + "] Entregando " +
-                        pedido.getClass().getSimpleName() + " #" + pedido.getIdPedido() + "...");
+                        pedido.getTipoPedido().getNombrePedido() + " #" + pedido.getIdPedido() + "...");
 
                 int tiempoViaje = 1000 + ThreadLocalRandom.current().nextInt(1500);
                 Thread.sleep(tiempoViaje);
