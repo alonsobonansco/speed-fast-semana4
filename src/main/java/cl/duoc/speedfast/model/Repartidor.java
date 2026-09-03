@@ -1,21 +1,26 @@
 package cl.duoc.speedfast.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Repartidor implements Runnable {
     private final String nombreRepartidor;
-    private final List<Pedido> listaPedidos;
+    private final List<Pedido> pedidosOrdenados;
 
-    public Repartidor(String nombreRepartidor, List<Pedido> listaPedidos) {
+    public Repartidor(String nombreRepartidor, List<Pedido> pedidosIniciales) {
         this.nombreRepartidor = nombreRepartidor;
+        List<Pedido> pedidosTemporales = new ArrayList<>(pedidosIniciales);
+
+        pedidosTemporales.sort(null);
+
         // List.copyOf hace que la lista sea inmutable
-        this.listaPedidos = List.copyOf(listaPedidos);
+        this.pedidosOrdenados = List.copyOf(pedidosTemporales);
     }
 
     @Override
     public void run() {
-        for (Pedido pedido : listaPedidos) {
+        for (Pedido pedido : pedidosOrdenados) {
             try {
                 System.out.println("[Repartidor: " + nombreRepartidor + "] Entregando " +
                         pedido.getTipoPedido().getNombrePedido() + " #" + pedido.getIdPedido() + "...");
