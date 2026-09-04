@@ -1,6 +1,7 @@
 package cl.duoc.speedfast;
 
 import cl.duoc.speedfast.model.*;
+import cl.duoc.speedfast.service.Repartidor;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

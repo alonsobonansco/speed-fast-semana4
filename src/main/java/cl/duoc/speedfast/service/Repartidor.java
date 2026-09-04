@@ -1,4 +1,6 @@
-package cl.duoc.speedfast.model;
+package cl.duoc.speedfast.service;
+
+import cl.duoc.speedfast.model.Pedido;
 
 import java.util.ArrayList;
 import java.util.List;

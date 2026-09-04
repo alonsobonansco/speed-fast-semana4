@@ -1,5 +1,8 @@
 package cl.duoc.speedfast.model;
 
+import cl.duoc.speedfast.interfaces.Cancelable;
+import cl.duoc.speedfast.interfaces.Despachable;
+
 public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedido> {
     private final TipoPedido tipoPedido;
     private final String idPedido;
