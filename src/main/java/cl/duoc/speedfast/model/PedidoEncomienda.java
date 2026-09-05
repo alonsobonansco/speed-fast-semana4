@@ -15,15 +15,13 @@ public class PedidoEncomienda extends Pedido {
 
     @Override
     public boolean validarPedido() {
-        System.out.println("Verificando que el peso de la encomienda no exceda el límite...");
-
         if (pesoEncomienda > CAPACIDAD_MAXIMA_KG) {
-            System.out.println("[ERROR] El peso de la encomienda supera el límite permitido.\n");
             this.cancelar();
+            System.out.println("✘ " + getTipoPedido().getNombrePedido() +
+                    " #" + getIdPedido() + " cancelado por el peso de la encomienda.");
             return false;
         }
 
-        System.out.println("[OK] Peso de la encomienda permitido.\n");
         return true;
     }
 

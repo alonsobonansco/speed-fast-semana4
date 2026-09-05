@@ -27,9 +27,8 @@ public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedi
     public void despachar() {
         if (!pedidoActivo) {
             System.out.println("No se puede despachar un pedido cancelado.\n");
-            return;
         }
-        System.out.println("El pedido ha sido despachado.");
+        System.out.println("→ " + getTipoPedido().getNombrePedido() + " #" + getIdPedido() + " listo para reparto.");
     }
 
     @Override
@@ -39,7 +38,6 @@ public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedi
             return;
         }
         pedidoActivo = false;
-        System.out.println("- El pedido #" + idPedido + " ha sido cancelado.\n");
     }
 
     @Override
