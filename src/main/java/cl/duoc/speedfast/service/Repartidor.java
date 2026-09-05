@@ -39,8 +39,10 @@ public class Repartidor implements Runnable, Rastreable {
                 }
 
                 registrarPedido(pedido);
+
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                System.out.println("Proceso interrumpido en pedido #" + pedido.getIdPedido());
                 return;
             }
         }
