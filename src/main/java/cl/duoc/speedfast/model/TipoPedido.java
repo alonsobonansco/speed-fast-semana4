@@ -1,5 +1,8 @@
 package cl.duoc.speedfast.model;
 
+/**
+ * Catálogo de tipos de pedidos y sus niveles de prioridad para el sistema de despacho.
+ */
 public enum TipoPedido {
     COMIDA("PEDIDO COMIDA", 1),
     EXPRESS("PEDIDO EXPRESS", 2),
