@@ -12,7 +12,6 @@ public enum TipoPedido {
     TipoPedido(String nombrePedido, int nivelPrioridad) {
         this.nombrePedido = nombrePedido;
         this.nivelPrioridad = nivelPrioridad;
-
     }
 
     public String getNombrePedido() {
