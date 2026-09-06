@@ -9,15 +9,14 @@ import java.util.concurrent.Executors;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-
-        Pedido pedidoComida1 = new PedidoComida("001", "calle 1234", 50.0, true);
-        Pedido pedidoExpress1 = new PedidoExpress("002", "calle 1111", 67.9);
-        Pedido pedidoEncomienda1 = new PedidoEncomienda("003", "avenida 789", 23.8, 28.3);
-        Pedido pedidoComida2 = new PedidoComida("004", "avenida 444", 31.3, false);
-        Pedido pedidoExpress2 = new PedidoExpress("005", "avenida 232", 13.7);
-        Pedido pedidoEncomienda2 = new PedidoEncomienda("006", "pasaje 555", 45.7, 41.9);
-
-        List<Pedido> listaPedidos = List.of(pedidoComida1, pedidoExpress1, pedidoEncomienda1, pedidoComida2, pedidoExpress2, pedidoEncomienda2);
+        List<Pedido> listaPedidos = List.of(
+                new PedidoComida("001", "calle 1234", 50.0, true),
+                new PedidoExpress("002", "calle 1111", 67.9),
+                new PedidoEncomienda("003", "avenida 789", 23.8, 28.3),
+                new PedidoComida("004", "avenida 444", 31.3, true),
+                new PedidoExpress("005", "avenida 232", 13.7),
+                new PedidoEncomienda("006", "pasaje 555", 45.7, 41.9)
+        );
 
         System.out.println("""
                 \n=========================================
@@ -32,11 +31,11 @@ public class Main {
             }
         }
 
-        Repartidor repartidor1 = new Repartidor("Carlos", List.of(pedidoComida1, pedidoExpress1));
-        Repartidor repartidor2 = new Repartidor("María", List.of(pedidoEncomienda1, pedidoComida2));
-        Repartidor repartidor3 = new Repartidor("Alberto", List.of(pedidoExpress2, pedidoEncomienda2));
-
-        List<Repartidor> listaRepartidores = List.of(repartidor1, repartidor2, repartidor3);
+        List<Repartidor> listaRepartidores = List.of(
+                new Repartidor("Carlos", listaPedidos.subList(0, 2)),
+                new Repartidor("María", listaPedidos.subList(2, 4)),
+                new Repartidor("Alberto", listaPedidos.subList(4, 6))
+        );
 
         Thread.sleep(1500);
 
