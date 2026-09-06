@@ -8,11 +8,20 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
+/**
+ * Hilo que simula la ruta de despacho de un repartidor.
+ * Se encarga de ordenar los pedidos por prioridad antes de iniciar la marcha y
+ * de procesar de forma secuencial las entregas simulando tiempos de traslado.
+ */
 public class Repartidor implements Runnable, Rastreable {
     private final String nombreRepartidor;
     private final List<Pedido> pedidosOrdenados;
     private final static List<Pedido> HISTORIAL_PEDIDOS = new CopyOnWriteArrayList<>();
 
+    /**
+     * Prepara la hoja de ruta del repartidor, clonando y ordenando la carga recibida
+     * según los criterios estrictos del contrato Comparable.
+     */
     public Repartidor(String nombreRepartidor, List<Pedido> pedidosIniciales) {
         this.nombreRepartidor = nombreRepartidor;
         List<Pedido> pedidosTemporales = new ArrayList<>(pedidosIniciales);
@@ -23,6 +32,10 @@ public class Repartidor implements Runnable, Rastreable {
         this.pedidosOrdenados = List.copyOf(pedidosTemporales);
     }
 
+    /**
+     * Motor asíncrono que recorre la mochila del repartidor.
+     * Simula el viaje de entrega mediante pausas aleatorias solo para paquetes activos.
+     */
     @Override
     public void run() {
         for (Pedido pedido : pedidosOrdenados) {
@@ -69,7 +82,7 @@ public class Repartidor implements Runnable, Rastreable {
 
         for (Pedido pedido : HISTORIAL_PEDIDOS) {
             if (pedido.isPedidoActivo()) {
-                System.out.println("- " + pedido.getTipoPedido().getNombrePedido() + " #" + pedido.getIdPedido() + " - [Entregado exitósamente]");
+                System.out.println("- " + pedido.getTipoPedido().getNombrePedido() + " #" + pedido.getIdPedido() + " - [Entregado exitosamente]");
             } else {
                 System.out.println("- " + pedido.getTipoPedido().getNombrePedido() + " #" + pedido.getIdPedido() + " - [Orden cancelada]");
             }

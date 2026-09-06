@@ -7,7 +7,16 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * Director de orquesta principal del sistema de despachos SpeedFast.
+ * Coordina las fases de recepción secuencial, validación de reglas de negocio,
+ * distribución balanceada de carga y activación del motor de hilos concurrente.
+ */
 public class Main {
+    /**
+     * Punto de entrada de la aplicación. Orquesta la simulación por etapas
+     * utilizando pausas artificiales temporales para el control de flujo visual.
+     */
     public static void main(String[] args) throws InterruptedException {
         List<Pedido> listaPedidos = List.of(
                 new PedidoComida("001", "calle 1234", 50.0, true),

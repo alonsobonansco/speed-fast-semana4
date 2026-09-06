@@ -3,6 +3,9 @@ package cl.duoc.speedfast.model;
 import cl.duoc.speedfast.interfaces.Cancelable;
 import cl.duoc.speedfast.interfaces.Despachable;
 
+/**
+ * Clase genérica de un pedido y superclase de subtipos de pedidos.
+ */
 public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedido> {
     private final TipoPedido tipoPedido;
     private final String idPedido;
@@ -10,6 +13,15 @@ public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedi
     private final double distanciaKm;
     private boolean pedidoActivo = true;
 
+    /**
+     *
+     * @param tipoPedido       Tipo de pedido.
+     * @param idPedido         Identificador único de la orden.
+     * @param direccionEntrega Destino físico del despacho.
+     * @param distanciaKm      Trayecto en kilómetros.
+     * @throws IllegalArgumentException Si el idPedido o la direccionEntrega están vacíos  o si
+     *                                  la distancia es menor o igual a cero.
+     */
     public Pedido(TipoPedido tipoPedido, String idPedido, String direccionEntrega, double distanciaKm) {
         if (idPedido == null || idPedido.isBlank()) {
             throw new IllegalArgumentException("El ID del pedido no puede estar vacío.");
@@ -23,6 +35,10 @@ public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedi
         this.distanciaKm = distanciaKm;
     }
 
+    /**
+     * Ejecuta un mensaje de despacho si el pedido se encuentra activo y no cancelado.
+     * Protege el flujo mediante una cláusula de guarda que impide enviar órdenes canceladas.
+     */
     @Override
     public void despachar() {
         if (!pedidoActivo) {
@@ -33,6 +49,10 @@ public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedi
         System.out.println("→ " + getTipoPedido().getNombrePedido() + " #" + getIdPedido() + " listo para reparto.");
     }
 
+    /**
+     * Cancela el pedido actual modificando su estado interno a falso.
+     * Cuenta con un escudo defensivo que bloquea solicitudes de anulación duplicadas.
+     */
     @Override
     public void cancelar() {
         if (!pedidoActivo) {
@@ -58,8 +78,20 @@ public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedi
         return this.idPedido.compareTo(otro.idPedido);
     }
 
+    /**
+     * Evalúa si las condiciones operativas de la subclase permiten el envío.
+     * Cada tipo de pedido implementa sus propias reglas de negocio.
+     *
+     * @return true si el pedido pasa los controles; false si es rechazado.
+     */
     public abstract boolean validarPedido();
 
+    /**
+     * Calcula el tiempo estimado que tardará el reparto en llegar al destino.
+     * Cada subclase implementa su propia lógica de estimación.
+     *
+     * @return Tiempo estimado para la entrega en minutos.
+     */
     protected abstract int calcularTiempoEntrega();
 
     public void mostrarResumen() {
