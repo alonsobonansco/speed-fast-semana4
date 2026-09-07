@@ -30,7 +30,7 @@ multihilo seguros en memoria, programación defensiva y optimización arquitect�
 * **Polimorfismo Dinámico:** La clase abstracta `Pedido` delega de forma polimórfica las lógicas particulares a las
   subclases especializadas: `PedidoComida`, `PedidoExpress` y `PedidoEncomienda`.
 
-### 3. Gestión Unificada de Prioridades & Criterio FIFO
+### 3. Gestión Unificada de Prioridades y Criterio FIFO
 
 * **Ordenamiento Estricto por Contrato:** La clase `Pedido` implementa el tipado fuerte de la interfaz *
   *`Comparable<Pedido>`**. El método `compareTo` prioriza de forma nativa la urgencia de la entrega (**Comida >
@@ -77,7 +77,7 @@ speed-fast-semana4/
 
 ---
 
-### 🛠️ Instrucciones para clonar y ejecutar
+## 🛠️ Instrucciones para clonar y ejecutar
 
 Requisitos del sistema:
 

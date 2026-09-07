@@ -14,6 +14,7 @@ public abstract class Pedido implements Despachable, Cancelable, Comparable<Pedi
     private boolean pedidoActivo = true;
 
     /**
+     * Constructor que inicializa el estado base e inmutable de un pedido para las subclases.
      *
      * @param tipoPedido       Tipo de pedido.
      * @param idPedido         Identificador único de la orden.

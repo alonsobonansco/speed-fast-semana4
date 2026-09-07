@@ -20,7 +20,7 @@ public class Repartidor implements Runnable, Rastreable {
 
     /**
      * Prepara la hoja de ruta del repartidor, clonando y ordenando la carga recibida
-     * según los criterios estrictos del contrato Comparable.
+     * según los criterios estrictos del contrato Comparable (a través de Pedido).
      */
     public Repartidor(String nombreRepartidor, List<Pedido> pedidosIniciales) {
         this.nombreRepartidor = nombreRepartidor;
